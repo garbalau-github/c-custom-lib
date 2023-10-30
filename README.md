@@ -10,3 +10,13 @@ gcc -Wno-implicit-function-declaration main.o hello.o -o final
 ```
 
 The idea of Makefile is that we can automate all of that by using certain commands
+
+Remove compiled files
+```
+make clean
+```
+
+Compile all
+```
+make all
+```
