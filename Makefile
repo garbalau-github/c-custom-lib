@@ -5,20 +5,12 @@ CFLAGS = -Wno-implicit-function-declaration
 
 all: final
 
-final: main.o file_reader.o
-	echo "Linking and producing final application"
-	$(CC) $(CFLAGS) $^ -o $@
+final: main.c io/file_reader.c io/file_reader.h
+	echo "Compiling and linking to produce final application"
+	$(CC) $(CFLAGS) main.c io/file_reader.c -o $@
 	@echo "This is executed, but not shown"
 	@chmod +x $@
 
-main.o: main.c file_reader.h
-	echo "Compiling $<"
-	$(CC) $(CFLAGS) -c $< -o $@
-
-file_reader.o: file_reader.c file_reader.h
-	echo "Compiling $<"
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
-	echo "Removing everything but the source files"
-	rm main.o file_reader.o final
+	echo "Removing the final application"
+	rm -f final

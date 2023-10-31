@@ -13,6 +13,8 @@ int read_file(const char *filename)
     return 1;
   }
 
+  printf("File contents:\n");
+
   while (fgets(line, sizeof(line), file) != NULL)
   {
     printf("%s\n", line);
