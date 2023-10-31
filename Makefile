@@ -1,23 +1,24 @@
-# Compilation flags
+CC = gcc
 CFLAGS = -Wno-implicit-function-declaration
 
-# Keywords for compilation
+.PHONY: all clean
+
 all: final
 
-final: main.o hello.o
+final: main.o file_reader.o
 	echo "Linking and producing final application"
-	gcc $(CFLAGS) main.o hello.o -o final
+	$(CC) $(CFLAGS) $^ -o $@
 	@echo "This is executed, but not shown"
-	@chmod +x final
+	@chmod +x $@
 
-main.o: main.c
-	echo "Compiling main.c file"
-	gcc $(CFLAGS) -c main.c
+main.o: main.c file_reader.h
+	echo "Compiling $<"
+	$(CC) $(CFLAGS) -c $< -o $@
 
-hello.o: hello.c
-	echo "Compiling hello.c file"
-	gcc $(CFLAGS) -c hello.c
+file_reader.o: file_reader.c file_reader.h
+	echo "Compiling $<"
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	echo "Removing everything but the source files"
-	rm main.o hello.o final
+	rm main.o file_reader.o final
