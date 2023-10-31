@@ -1,4 +1,4 @@
-# why-c-make-file
+# Custom C Library
 
 Compile all
 ```
